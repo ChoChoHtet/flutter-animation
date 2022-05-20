@@ -82,6 +82,7 @@ class _ImplicitAnimationState extends State<ImplicitAnimation> {
                         duration: kAnimationDuration,
                         child: (isChangeLayout)
                             ? ButtonWrapView(
+                                isDescShow: isShowDescription,
                                 onTapDimension: () {
                                   setState(() {
                                     isNewDimension = !isNewDimension;
@@ -99,6 +100,7 @@ class _ImplicitAnimationState extends State<ImplicitAnimation> {
                                 },
                               )
                             : ButtonColumnView(
+                                isDescShow: isShowDescription,
                                 onTapDimension: () {
                                   setState(() {
                                     isNewDimension = !isNewDimension;
@@ -167,10 +169,12 @@ class _ImplicitAnimationState extends State<ImplicitAnimation> {
 class ButtonColumnView extends StatelessWidget {
   const ButtonColumnView({
     Key? key,
+    required this.isDescShow,
     required this.onTapDimension,
     required this.onTapDescription,
     required this.onTapChangeTheme,
   }) : super(key: key);
+  final bool isDescShow;
   final VoidCallback onTapDimension;
   final VoidCallback onTapDescription;
   final VoidCallback onTapChangeTheme;
@@ -188,7 +192,7 @@ class ButtonColumnView extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: onTapDescription,
-          child: const Text("Show Description"),
+          child: Text((isDescShow) ? "Hide Description" : "Show Description"),
         ),
         const SizedBox(
           height: 20,
@@ -208,10 +212,12 @@ class ButtonColumnView extends StatelessWidget {
 class ButtonWrapView extends StatelessWidget {
   const ButtonWrapView({
     Key? key,
+    required this.isDescShow,
     required this.onTapDimension,
     required this.onTapDescription,
     required this.onTapChangeTheme,
   }) : super(key: key);
+  final bool isDescShow;
   final VoidCallback onTapDimension;
   final VoidCallback onTapDescription;
   final VoidCallback onTapChangeTheme;
@@ -229,7 +235,7 @@ class ButtonWrapView extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: onTapDescription,
-          child: const Text("Show Description"),
+          child: Text((isDescShow) ? "Hide Description" : "Show Description"),
         ),
         const SizedBox(
           width: 20,
